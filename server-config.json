@@ -1,17 +1,1 @@
-{
-  "masterServer": {
-    "defaultUrl": "http://207.180.235.41:3000",
-    "apiKey": "",
-    "enabled": true
-  },
-  "network": {
-    "tickRate": 30,
-    "maxConnections": 100,
-    "timeout": 30
-  },
-  "game": {
-    "maxPlayers": 20,
-    "gameMode": "survival",
-    "difficulty": "normal"
-  }
-}
+{}
