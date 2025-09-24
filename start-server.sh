@@ -4,7 +4,7 @@ echo "Starting SkaffaCity Server..."
 # Default configuration
 PORT=7001
 MAX_PLAYERS=50
-MASTER_URL="http://207.180.235.41:3000"
+MASTER_URL="https://panel.lvlagency.nl:25566"
 SERVER_ID="server-$(date +%s)"
 
 # Override with environment variables if provided
