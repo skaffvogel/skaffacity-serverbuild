@@ -1,0 +1,63 @@
+{
+  "serverInfo": {
+    "name": "SkaffaCity Dedicated Server",
+    "version": "1.0.0",
+    "description": "Unity dedicated server voor SkaffaCity multiplayer gameplay"
+  },
+  "network": {
+    "defaultPort": 7001,
+    "maxPlayers": 50,
+    "tickRate": 30,
+    "timeout": 30,
+    "maxPacketSize": 1024,
+    "compressionEnabled": true
+  },
+  "game": {
+    "defaultMap": "SkaffaCity_Default",
+    "defaultGameMode": "default",
+    "worldSize": {
+      "x": 2000,
+      "y": 2000,
+      "z": 2000
+    },
+    "spawnPoints": [
+      { "x": 0, "y": 10, "z": 0 },
+      { "x": 100, "y": 10, "z": 100 },
+      { "x": -100, "y": 10, "z": -100 }
+    ]
+  },
+  "masterServer": {
+    "defaultUrl": "http://207.180.235.41:3000",
+    "registrationPath": "/api/v1/internal/servers/register",
+    "heartbeatPath": "/api/v1/internal/servers/heartbeat",
+    "heartbeatInterval": 30,
+    "registrationRetryInterval": 5
+  },
+  "logging": {
+    "level": "Info",
+    "logToFile": true,
+    "logToConsole": true,
+    "logPackets": false,
+    "maxLogFileSize": "10MB",
+    "rotateLogsDaily": true
+  },
+  "performance": {
+    "targetFPS": 60,
+    "maxConcurrentConnections": 100,
+    "memoryLimit": "2GB",
+    "garbageCollectionMode": "incremental"
+  },
+  "security": {
+    "enableAuthentication": true,
+    "serverToken": "",
+    "allowedOrigins": ["*"],
+    "rateLimitPerMinute": 100
+  },
+  "features": {
+    "enablePvP": true,
+    "enableBuilding": true,
+    "enableTrading": true,
+    "enableFactions": true,
+    "enableVoiceChat": false
+  }
+}
