@@ -1,63 +1,71 @@
 {
-  "serverInfo": {
-    "name": "SkaffaCity Dedicated Server",
-    "version": "1.0.0",
-    "description": "Unity dedicated server voor SkaffaCity multiplayer gameplay"
+  "masterServer": {
+    "defaultUrl": "https://panel.lvlagency.nl:25566",
+    "apiKey": "",
+    "enabled": true,
+    "heartbeatInterval": 30,
+    "registrationTimeout": 10,
+    "maxRetries": 3
   },
   "network": {
-    "defaultPort": 7001,
-    "maxPlayers": 50,
     "tickRate": 30,
+    "maxConnections": 100,
     "timeout": 30,
-    "maxPacketSize": 1024,
+    "allowInsecureConnections": true,
+    "bufferSize": 4096,
     "compressionEnabled": true
   },
   "game": {
-    "defaultMap": "SkaffaCity_Default",
-    "defaultGameMode": "default",
+    "maxPlayers": 50,
+    "gameMode": "survival",
+    "difficulty": "normal",
+    "mapName": "SkaffaCity_Default",
     "worldSize": {
       "x": 2000,
       "y": 2000,
       "z": 2000
     },
-    "spawnPoints": [
-      { "x": 0, "y": 10, "z": 0 },
-      { "x": 100, "y": 10, "z": 100 },
-      { "x": -100, "y": 10, "z": -100 }
-    ]
+    "respawnTime": 10,
+    "friendlyFire": false
   },
-  "masterServer": {
-    "defaultUrl": "http://207.180.235.41:3000",
-    "registrationPath": "/api/v1/internal/servers/register",
-    "heartbeatPath": "/api/v1/internal/servers/heartbeat",
-    "heartbeatInterval": 30,
-    "registrationRetryInterval": 5
-  },
-  "logging": {
-    "level": "Info",
-    "logToFile": true,
-    "logToConsole": true,
-    "logPackets": false,
-    "maxLogFileSize": "10MB",
-    "rotateLogsDaily": true
+  "server": {
+    "name": "SkaffaCity Server",
+    "description": "Official SkaffaCity Game Server",
+    "region": "EU-West",
+    "password": "",
+    "isPublic": true,
+    "autoStart": true,
+    "autoRestart": true,
+    "saveInterval": 300
   },
   "performance": {
-    "targetFPS": 60,
-    "maxConcurrentConnections": 100,
-    "memoryLimit": "2GB",
-    "garbageCollectionMode": "incremental"
+    "targetFrameRate": 30,
+    "vSyncEnabled": false,
+    "qualityLevel": 0,
+    "shadowQuality": 0,
+    "textureQuality": 0,
+    "antiAliasing": 0
+  },
+  "logging": {
+    "level": "INFO",
+    "enableConsoleOutput": true,
+    "enableFileOutput": true,
+    "maxLogFileSize": 10485760,
+    "maxLogFiles": 5,
+    "logToMasterServer": true
   },
   "security": {
-    "enableAuthentication": true,
-    "serverToken": "",
-    "allowedOrigins": ["*"],
-    "rateLimitPerMinute": 100
+    "enableAntiCheat": true,
+    "maxPingThreshold": 300,
+    "kickHighPingPlayers": false,
+    "rateLimitEnabled": true,
+    "maxRequestsPerSecond": 10
   },
   "features": {
-    "enablePvP": true,
-    "enableBuilding": true,
-    "enableTrading": true,
-    "enableFactions": true,
-    "enableVoiceChat": false
+    "voiceChatEnabled": false,
+    "chatFilterEnabled": true,
+    "statisticsEnabled": true,
+    "backupEnabled": true,
+    "modSupportEnabled": false
   }
 }
