@@ -1,38 +1,46 @@
 #!/bin/bash
-echo "Starting SkaffaCity Server..."
+echo "=== SKAFFACITY UNITY SERVER STARTUP ==="
+echo "Startup time: $(date)"
+echo "Working directory: $(pwd)"
 
-# Default configuration
-PORT=7001
-MAX_PLAYERS=50
-MASTER_URL="https://panel.lvlagency.nl:25566"
-SERVER_ID="server-$(date +%s)"
+# Export minimal required environment variables for Unity server
+echo "Setting up minimal environment variables..."
 
-# Override with environment variables if provided
-if [ ! -z "$SKAFFA_SERVER_PORT" ]; then
-    PORT=$SKAFFA_SERVER_PORT
-fi
+# Only export essential variables - configuration comes from API
+export MASTER_SERVER_URL="${MASTER_SERVER_URL:-https://panel.lvlagency.nl:25566}"
+export SERVER_PORT="${SERVER_PORT:-7001}"
 
-if [ ! -z "$SKAFFA_MAX_PLAYERS" ]; then
-    MAX_PLAYERS=$SKAFFA_MAX_PLAYERS
-fi
-
-if [ ! -z "$SKAFFA_MASTER_URL" ]; then
-    MASTER_URL=$SKAFFA_MASTER_URL
-fi
-
-if [ ! -z "$SKAFFA_SERVER_ID" ]; then
-    SERVER_ID=$SKAFFA_SERVER_ID
-fi
-
-# Set Unity environment variables
+# Unity-specific environment variables
 export UNITY_HEADLESS=true
 export UNITY_BATCHMODE=true
 
-echo "Server Configuration:"
-echo "- Port: $PORT"
-echo "- Max Players: $MAX_PLAYERS"
-echo "- Master URL: $MASTER_URL"
-echo "- Server ID: $SERVER_ID"
+echo "Environment Configuration:"
+echo "- Master Server: $MASTER_SERVER_URL" 
+echo "- Server Port: $SERVER_PORT"
+echo "- Configuration: Loaded via API endpoints"
 
-# Launch server
-./SkaffaCityServer -batchmode -nographics -port $PORT -maxplayers $MAX_PLAYERS -serverid $SERVER_ID -masterurl "$MASTER_URL" $@
+# Auto-detect executable
+if [ -f "SkaffaCityServer" ]; then
+    SERVER_EXEC="./SkaffaCityServer"
+    echo "Found executable: SkaffaCityServer"
+elif [ -f "SkaffaCityServer.x86_64" ]; then
+    SERVER_EXEC="./SkaffaCityServer.x86_64" 
+    echo "Found executable: SkaffaCityServer.x86_64"
+else
+    echo "ERROR: No Unity server executable found!"
+    echo "Looking for: SkaffaCityServer or SkaffaCityServer.x86_64"
+    exit 1
+fi
+
+# Set executable permissions
+chmod +x "${SERVER_EXEC#./}"
+
+echo "=========================================="
+echo "🚀 Starting SkaffaCity Unity Server..."
+echo "🌐 Configuration via API endpoints"
+echo "📡 Server registration and heartbeat enabled"
+echo "🔧 Minimal environment variables - Maximum flexibility"
+echo "=========================================="
+
+# Launch Unity server (reads configuration from environment variables only)
+exec $SERVER_EXEC -batchmode -nographics $@
