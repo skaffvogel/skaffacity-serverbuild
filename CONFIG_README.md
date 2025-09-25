@@ -9,7 +9,7 @@ Dit bestand bevat alle instellingen voor de SkaffaCity Unity dedicated server. H
 ```json
 {
   "masterServer": {
-    "defaultUrl": "https://207.180.235.41:3000",  // URL van de master server
+    "defaultUrl": "https://panel.lvlagency.nl:25566",  // URL van de master server
     "apiKey": "",                                  // API sleutel (optioneel)
     "enabled": true,                              // Master server registratie aan/uit
     "heartbeatInterval": 30,                      // Heartbeat interval in seconden
@@ -224,7 +224,7 @@ Voor debug informatie:
 ```json
 {
   "masterServer": {
-    "defaultUrl": "https://207.180.235.41:3000",
+    "defaultUrl": "https://panel.lvlagency.nl:25566",
     "enabled": true
   },
   "network": {
